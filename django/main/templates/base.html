@@ -27,8 +27,11 @@
             <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
           </li>
           <li class="nav-item">
-              <a href="/contact-us/" class="nav-link {% if request.path == '/contact-us/' %}active{% endif %}">Contact us</a>
-            </li>
+            <a href="{% url 'products' 'all' %}" class="nav-link {% if request.path == '/products/all/' %}active{% endif %}">Products</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contact-us/" class="nav-link {% if request.path == '/contact-us/' %}active{% endif %}">Contact us</a>
+          </li>
           <li class="nav-item">
             <a href="/about-us/" class="nav-link {% if request.path == '/about-us/' %}active{% endif %}">About us</a>
           </li>
