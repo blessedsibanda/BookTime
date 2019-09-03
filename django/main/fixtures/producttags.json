@@ -1,0 +1,38 @@
+[
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Web Development",
+    "slug": "web-development",
+    "description": "Web Development Books",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Finance",
+    "slug": "finance",
+    "description": "",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Engineering",
+    "slug": "engineering",
+    "description": "",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Social Sciences",
+    "slug": "social-sciences",
+    "description": "",
+    "active": true
+  }
+}
+]
