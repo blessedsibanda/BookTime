@@ -3,7 +3,8 @@ import logging
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (
         FormView,
         ListView,
@@ -14,6 +15,26 @@ from django.shortcuts import get_object_or_404
 
 logger = logging.getLogger(__name__)
 from main import forms, models
+
+
+def add_to_basket(request):
+    product = get_object_or_404(models.Product, pk=request.GET.get('product_id'))
+    basket = request.basket 
+    if not request.basket:
+        if request.user.is_authenticated:
+            user = request.user  
+        else:
+            user = None 
+        basket = models.Basket.objects.create(user=user)
+        request.session['basket_id'] = basket.id  
+
+    basketline, created = models.BasketLine.objects.get_or_create(
+        basket=basket, product=product)
+    if not created:
+        basketline.quantity += 1
+        basketline.save()
+    return HttpResponseRedirect(
+            reverse('product', args=(product.slug,)))
 
 
 class SignupView(FormView):
