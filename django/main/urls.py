@@ -6,7 +6,7 @@ from main import views, models
 
 urlpatterns = [
     path('about-us/',
-        TemplateView.as_view(template_name='main/about_us.html'),
+        TemplateView.as_view(template_name='about_us.html'),
         name='about_us'),
     path('contact-us/',
         views.ContactUsView.as_view(),
@@ -18,6 +18,6 @@ urlpatterns = [
         DetailView.as_view(model=models.Product),
         name='product'),
     path('',
-        TemplateView.as_view(template_name='main/home.html'),
+        TemplateView.as_view(template_name='home.html'),
         name='home'),
 ]
