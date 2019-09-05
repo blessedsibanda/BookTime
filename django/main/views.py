@@ -11,10 +11,30 @@ from django.views.generic import (
         CreateView,
         DeleteView,
         UpdateView,)
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
 logger = logging.getLogger(__name__)
 from main import forms, models
+
+
+def manage_basket(request):
+    if not request.basket:
+        return render(request, 'basket.html', {'formset': None})
+    
+    if request.method == 'POST':
+        formset = forms.BasketLineFormSetFactory(
+            request.POST, instance=request.basket
+        )
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = forms.BasketLineFormSetFactory(
+            instance=request.basket
+        )
+    if request.basket.is_empty():
+        return render(request, 'basket.html', {'formset': None})
+
+    return render(request, 'basket.html', {'formset': formset})
 
 
 def add_to_basket(request):
