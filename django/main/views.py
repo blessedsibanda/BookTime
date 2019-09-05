@@ -89,7 +89,7 @@ class AddressCreateView(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.user = self.request.user  
         obj.save()
-        return super().form_valid()
+        return super().form_valid(form)
 
 
 class AddressUpdateView(LoginRequiredMixin, UpdateView):
