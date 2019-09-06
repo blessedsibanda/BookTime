@@ -1,11 +1,18 @@
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView, DetailView
 
-from main import views, models, forms
+from rest_framework import routers
+
+from main import views, models, forms, endpoints
+
+router = routers.DefaultRouter()
+router.register(r'orderlines', endpoints.PaidOrderLineViewSet)
+router.register(r'orders', endpoints.PaidOrderViewSet)
 
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('about-us/',
         TemplateView.as_view(template_name='about_us.html'),
         name='about_us'),
