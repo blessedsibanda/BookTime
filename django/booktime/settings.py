@@ -40,10 +40,13 @@ INSTALLED_APPS = [
 
     'main.apps.MainConfig',
     'webpack_loader',
-    'django_extensions'
+    'django_extensions',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -184,3 +187,6 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+# Django-Debug-Toolbar
+INTERNAL_IPS = ['127.0.0.1']
