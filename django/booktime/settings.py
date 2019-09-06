@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'django_extensions',
     'debug_toolbar',
+    'django_tables2',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -190,3 +192,6 @@ WEBPACK_LOADER = {
 
 # Django-Debug-Toolbar
 INTERNAL_IPS = ['127.0.0.1']
+
+# Django-Tables
+DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap.html'
