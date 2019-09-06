@@ -14,6 +14,17 @@ from main import models, widgets
 logger = logging.getLogger(__name__)
 
 
+class AddressSelectionForm(forms.Form):
+    billing_address = forms.ModelChoiceField(queryset=None)
+    shipping_address = forms.ModelChoiceField(queryset=None)
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        queryset = models.Address.objects.filter(user=user)
+        self.fields['billing_address'].queryset = queryset
+        self.fields['shipping_address'].queryset = queryset
+
+
 BasketLineFormSetFactory = inlineformset_factory(
     models.Basket,
     models.BasketLine,
