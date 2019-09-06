@@ -23,7 +23,7 @@ class ImageBox extends React.Component {
 
     render() {
         const images = this.props.images.map(i => 
-            e('div', {style: imageStyle,className: 'image', key: i.id},
+            e('div', {style: imageStyle,className: 'image', key: i.image},
                 e('img', {onClick: this.click.bind(this, i),
                     width: '100',
                     src: i.thumbnail}),
