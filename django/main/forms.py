@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UsernameField
 from django.core.mail import send_mail
 from django.forms import inlineformset_factory
 
-from main import models
+from main import models, widgets
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,8 @@ BasketLineFormSetFactory = inlineformset_factory(
     models.Basket,
     models.BasketLine,
     fields=('quantity',),
-    extra=0
+    extra=0,
+    widgets={'quantity': widgets.PlusMinusNumberInput()}
 )
 
 

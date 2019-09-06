@@ -224,8 +224,10 @@ class TestPage(TestCase):
         self.assertTrue(
             auth.get_user(self.client).is_authenticated
         )
+
         self.assertTrue(
             models.Basket.objects.filter(user=user1).exists()
         )
+        
         basket = models.Basket.objects.get(user=user1)
         self.assertEquals(basket.count(), 3)
