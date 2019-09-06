@@ -1,0 +1,24 @@
+{
+  "name": "django",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Blessed Sibanda",
+  "license": "ISC",
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.9.0",
+    "webpack": "^4.39.3",
+    "webpack-bundle-tracker": "^0.4.2-beta",
+    "webpack-cli": "^3.3.8"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
