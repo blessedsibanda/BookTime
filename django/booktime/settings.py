@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main.apps.MainConfig',
+
     'webpack_loader',
     'django_extensions',
     'debug_toolbar',
     'django_tables2',
+    'django_filters',
     'widget_tweaks',
     'rest_framework',
 ]
