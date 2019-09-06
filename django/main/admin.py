@@ -29,7 +29,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_editable = ('status',)
     list_filter = ('status', 'shipping_country','date_added')
     inlines = (OrderLineInline,)
-    fields = (
+    fieldsets = (
         (None, {'fields': ('user', 'status')}),
         (
             'Billing info',
