@@ -92,6 +92,20 @@ class ProductAdmin(admin.ModelAdmin):
         else:
             return {}
 
+    def make_active(self, request, queryset):
+        queryset.update(active=True)
+
+    make_active.short_description = 'Mark selected items as active'
+
+    def make_inactive(self, request, queryset):
+        queryset.update(active=False)
+
+    make_inactive.short_description = (
+        "Mark selected items as inactive"
+    )
+
+    actions = [make_active, make_inactive]
+
 
 class DispatchersProductAdmin(ProductAdmin):
     readonly_fields = ('description', 'price', 'tags', 'active')
