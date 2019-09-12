@@ -8,7 +8,7 @@ export default class BackendApi {
         this.baseHttpApi = 'http://' + this.hostName + '/mobile-api'
     }
 
-    auth  (username, password) {
+    auth (username, password) {
         return fetch(this.baseHttpApi + `/auth/`, {
             method: 'POST',
             headers: {
