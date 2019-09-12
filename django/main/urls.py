@@ -62,6 +62,11 @@ urlpatterns = [
     path('mobile-api/auth/',
         authtoken_views.obtain_auth_token,
         name='mobile_token'),
+    path(
+        "mobile-api/my-orders/",
+        endpoints.my_orders,
+        name="mobile_my_orders",
+    ),
     path('',
         TemplateView.as_view(template_name='home.html'),
         name='home'),
