@@ -22,6 +22,14 @@ logger = logging.getLogger(__name__)
 from main import forms, models
 
 
+def room(request, order_id):
+    return render(
+        request,
+        'chat_room.html',
+        {'room_name_json': str(order_id)}
+    )
+
+
 class DateInput(django_forms.DateInput):
     input_type = 'date'
 
