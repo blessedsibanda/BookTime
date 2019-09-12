@@ -97,3 +97,29 @@ class TestConsumers(TestCase):
         
         loop = asyncio.get_event_loop()
         loop.run_until_complete(test_body())
+    
+    def test_chat_blocks_unauthorized_users(self):
+        def init_db():
+            user = factories.UserFactory(
+                email="john@bestemails.com",
+                first_name="John",
+                last_name="Smith",
+            )
+            order = factories.OrderFactory()
+            return user, order 
+
+        async def test_body():
+            user, order = await database_sync_to_async(init_db)()
+            communicator = WebsocketCommunicator(
+                consumers.ChatConsumer,
+                '/ws/customer-service/%d/' % order.id  
+            )
+            communicator.scope["user"] = user
+            communicator.scope["url_route"] = {
+                "kwargs": {"order_id": order.id}
+            }
+            connected, _ = await communicator.connect()
+            self.assertFalse(connected)
+            
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(test_body())
