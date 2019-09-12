@@ -1,6 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.views.generic import TemplateView, DetailView
+from rest_framework.authtoken import views as authtoken_views
 
 from rest_framework import routers
 
@@ -21,6 +22,9 @@ urlpatterns = [
     path('about-us/',
         TemplateView.as_view(template_name='about_us.html'),
         name='about_us'),
+    path('customer-service/',
+        TemplateView.as_view(template_name='customer_service.html'),
+        name='cs_main'),
     path('contact-us/',
         views.ContactUsView.as_view(),
         name='contact_us'),
@@ -55,6 +59,9 @@ urlpatterns = [
     path('order/dashboard/',
         views.OrderView.as_view(),
         name='order_dashboard'),
+    path('mobile-api/auth/',
+        authtoken_views.obtain_auth_token,
+        name='mobile_token'),
     path('',
         TemplateView.as_view(template_name='home.html'),
         name='home'),

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'widget_tweaks',
     'rest_framework',
+    'rest_framework.authtoken',
     'channels',
 ]
 
@@ -206,6 +207,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        "rest_framework.authentication.BasicAuthentication",
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.DjangoModelPermissions',
@@ -229,3 +231,4 @@ CHANNEL_LAYERS = {
         }
     }
 }
+
