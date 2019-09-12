@@ -16,5 +16,9 @@ http_urlpatterns = [
         AuthMiddlewareStack(
             consumers.ChatNotifyConsumer
         )
+    ),
+    path(
+        'mobile-api/my-orders/<int:order_id>/tracker/',
+        AuthMiddlewareStack(consumers.OrderTrackerConsumer),
     )
 ]

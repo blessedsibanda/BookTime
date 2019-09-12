@@ -1,6 +1,7 @@
 import aioredis
 import logging
 import asyncio
+import aiohttp
 import json
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -12,6 +13,41 @@ from channels.generic.http import AsyncHttpConsumer
 from main import models 
 
 logger = logging.getLogger(__name__)
+
+
+class OrderTrackerConsumer(AsyncHttpConsumer):
+    def verify_user(self, user, order_id):
+        order = get_object_or_404(models.Order, pk=order_id)
+        return order.user == user 
+
+    async def query_remote_server(self, order_id):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                "https://pastebin.com/raw/AZqmdKWn"
+            ) as resp:
+                return await resp.read()
+
+    async def handle(self, body):
+        self.order_id = self.scope['url_route']['kwargs']['order_id']
+        is_authorized = await database_sync_to_async(
+            self.verify_user)(self.scope['user'], self.order_id)
+        
+        if is_authorized:
+            logger.info(
+                "Order tracking request for user %s and order %s",
+                self.scope.get("user"),
+                self.order_id
+            )
+            payload = await self.query_remote_server(self.order_id)
+            logger.info(
+                "Order tracking response %s for user %s and order %s",
+                payload,
+                self.scope.get("user"),
+                self.order_id
+            )
+            await self.send_response(200, payload)
+        else:
+            raise StopConsumer('unauthorized')
 
 
 class ChatConsumer(AsyncJsonWebsocketConsumer):
