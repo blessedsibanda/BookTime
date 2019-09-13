@@ -40,7 +40,7 @@ export default class LoginView extends Component {
 
     handleSubmitLogin() {
         if (this.state.username && this.state.password) {
-            return this.props.backedApi
+            return this.props.backendApi
                 .auth(this.state.username, this.state.password)
                 .then(loggedIn => {
                     if (loggedIn) {

@@ -72,8 +72,10 @@ export default class ChatView extends Component {
     }
 
     render() {
+    
         if (this.props.orderCurrentId) {
-            <View style={styles.chatContainer}>
+            return (
+                <View style={styles.chatContainer}>
                 <Text>Chat for order: {this.props.orderCurrentId}
                     - {this.state.shipmentStatus}
                 </Text>   
@@ -104,6 +106,8 @@ export default class ChatView extends Component {
                     onSubmitEditing={this.handleSubmit}
                 />
             </View>
+            )
+        
         } else {
             return (
                 <View>
@@ -111,5 +115,6 @@ export default class ChatView extends Component {
                 </View>
             )
         }
+        
     }
 }

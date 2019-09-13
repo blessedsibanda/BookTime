@@ -9,7 +9,7 @@ it('renders without orders specified', () => {
 })
 
 it('renders with orders specified', () => {
-    const backedApi = {
+    const backendApi = {
         openMessagesStream: jest.fn(),
         closeMessagesStream: jest.fn(),
         sendMessage: jest.fn(),
@@ -18,7 +18,7 @@ it('renders with orders specified', () => {
         )
     }
     const rendered = renderer.create(
-        <ChatView backendApi={backedApi} orderCurrentId="1" />
+        <ChatView backendApi={backendApi} orderCurrentId="1" />
     )
     rendered.root.instance.componentDidUpdate({})
     expect(backendApi.openMessagesStream.mock.calls.length).toBe(1)
