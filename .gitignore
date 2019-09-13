@@ -6,3 +6,4 @@ venv/
 **/media/**
 **/geckodriver.log
 **/node_modules
+**/.env
